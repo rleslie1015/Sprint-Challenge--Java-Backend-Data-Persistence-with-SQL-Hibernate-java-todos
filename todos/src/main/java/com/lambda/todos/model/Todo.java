@@ -19,9 +19,10 @@ public class Todo
 	private String date;
 	private boolean completed;
 
-	@ManyToOne
-	@JoinColumn(name = "userid")
-	@JsonIgnoreProperties("todos")
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "userid", nullable = false)
+	@JsonIgnoreProperties({"todos", "hibernateLazyInitializer"})
 	private User user;
 
 	public Todo()
