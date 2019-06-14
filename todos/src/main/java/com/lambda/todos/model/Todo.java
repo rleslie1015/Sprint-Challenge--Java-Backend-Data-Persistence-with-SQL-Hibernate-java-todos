@@ -16,15 +16,72 @@ public class Todo
 	@Column(nullable = false)
 	private String description;
 
-	private Date datestarted;
-	private Date datetime;
+	private String date;
 	private boolean completed;
 
 	@ManyToOne
-	@Column(nullable = false)
 	@JoinColumn(name = "userid")
 	@JsonIgnoreProperties("todos")
 	private User user;
 
+	public Todo()
+	{
+	}
 
+	public Todo(String description, String date, User user)
+	{
+		this.description = description;
+		this.date = date;
+		this.user = user;
+	}
+
+	public long getTodoid()
+	{
+		return todoid;
+	}
+
+	public void setTodoid(long todoid)
+	{
+		this.todoid = todoid;
+	}
+
+	public String getDescription()
+	{
+		return description;
+	}
+
+	public void setDescription(String description)
+	{
+		this.description = description;
+	}
+
+	public String getDate()
+	{
+		return date;
+	}
+
+	public void setDate(String date)
+	{
+		this.date = date;
+	}
+
+	public boolean isCompleted()
+	{
+		return completed;
+	}
+
+	public void setCompleted(boolean completed)
+	{
+		this.completed = completed;
+	}
+
+	public User getUser()
+	{
+		return user;
+	}
+
+	public void setUser(User user)
+	{
+		this.user = user;
+	}
 }
