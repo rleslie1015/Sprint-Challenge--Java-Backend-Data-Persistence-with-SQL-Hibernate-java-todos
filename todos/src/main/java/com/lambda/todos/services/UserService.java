@@ -1,8 +1,8 @@
 package com.lambda.todos.services;
 
-        import com.lambda.todos.model.User;
+import com.lambda.todos.model.User;
 
-        import java.util.List;
+import java.util.List;
 
 public interface UserService {
 
