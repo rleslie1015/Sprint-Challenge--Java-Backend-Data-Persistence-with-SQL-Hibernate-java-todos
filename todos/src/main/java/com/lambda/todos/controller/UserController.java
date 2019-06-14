@@ -25,7 +25,7 @@ public class UserController
     @Autowired
     private UserService userService;
 
-//    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @GetMapping(value = "/users", produces = {"application/json"})
     public ResponseEntity<?> listAllUsers(HttpServletRequest request)
     {
@@ -33,6 +33,13 @@ public class UserController
         return new ResponseEntity<>(myUsers, HttpStatus.OK);
     }
 
+    @GetMapping(value = "/mine", produces = {"application/json"})
+    @ResponseBody
+    public ResponseEntity<?> getCurrentUserName(Authentication authentication)
+    {
+        User u = userService.findUserByName(authentication.getName());
+        return new ResponseEntity<>(u, HttpStatus.OK);
+    }
 
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @GetMapping(value = "/user/{userId}", produces = {"application/json"})
