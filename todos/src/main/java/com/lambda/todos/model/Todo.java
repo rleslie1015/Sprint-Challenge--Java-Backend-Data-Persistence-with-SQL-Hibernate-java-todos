@@ -20,21 +20,35 @@ public class Todo
 	private boolean completed;
 
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name = "userid", nullable = false)
-	@JsonIgnoreProperties({"todos", "hibernateLazyInitializer"})
+	@JsonIgnoreProperties({"todos"})
 	private User user;
 
-	public Todo()
-	{
+
+	public Todo() {
 	}
 
-	public Todo(String description, String date, User user)
-	{
+	public Todo(String description, String date, boolean completed) {
+		this.description = description;
+		this.date = date;
+		this.completed = completed;
+	}
+
+	public Todo(String description, String date, User user){
 		this.description = description;
 		this.date = date;
 		this.user = user;
+		this.completed = false;
 	}
+
+	public Todo(String description, String date, boolean completed, User user){
+		this.description = description;
+		this.date = date;
+		this.completed = completed;
+		this.user = user;
+	}
+
 
 	public long getTodoid()
 	{
